@@ -13,11 +13,20 @@ function createInitialState() {
       name: '',
       alignment: { economic: 0, social: 0 },
       approval: 5,
+      voters: {
+        arbeiter: 5,
+        akademiker: 5,
+        rentner: 5,
+        jugend: 5,
+        selbststaendige: 5,
+        land: 5,
+      }
     },
     currentEvent: null,
     lastChoice: null,
   };
 }
+
 
 // ===== EVENTS (3 Beispiel-Events) =====
 const SIMPLE_EVENTS = [
