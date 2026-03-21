@@ -138,10 +138,27 @@ function finalizePartyCreation() {
 }
 
 function nextEvent() {
-  const idx = Math.floor(Math.random() * SIMPLE_EVENTS.length);
-  state.currentEvent = SIMPLE_EVENTS[idx];
+  // Alle Events, die noch nicht benutzt wurden
+  const remaining = SIMPLE_EVENTS.filter(ev => !state.usedEventIds.includes(ev.id));
+
+  let ev;
+  if (remaining.length > 0) {
+    const idx = Math.floor(Math.random() * remaining.length);
+    ev = remaining[idx];
+  } else {
+    // Alle wurden schon einmal gespielt → Liste zurücksetzen und neu mischen
+    state.usedEventIds = [];
+    const idx = Math.floor(Math.random() * SIMPLE_EVENTS.length);
+    ev = SIMPLE_EVENTS[idx];
+  }
+
+  state.currentEvent = ev;
   state.lastChoice = null;
+  if (!state.usedEventIds.includes(ev.id)) {
+    state.usedEventIds.push(ev.id);
+  }
 }
+
 
 // ===== ENTSCHEIDUNGEN =====
 function applyDecision(optionIndex) {
