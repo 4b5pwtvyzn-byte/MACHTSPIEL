@@ -339,26 +339,28 @@ function renderScreen() {
     `;
     return;
   }
-
-
   if (state.phase === 'gameover') {
-    const approval = state.player.approval;
-    let verdict = 'Solide Leistung, aber noch Luft nach oben.';
-    if (approval <= 3) verdict = 'Die Wähler sind unzufrieden. Du verlierst die nächste Wahl.';
-    if (approval >= 8) verdict = 'Großer Erfolg! Deine Partei ist sehr beliebt.';
+    const result = getElectionResult();
 
     app.innerHTML = `
       <div class="screen">
-        <h1>Spielende</h1>
-        <p>Zustimmung: ${approval} / 10</p>
-        <p>${verdict}</p>
-        <button class="btn primary" onclick="startNewGame()">
-          Noch einmal spielen
-        </button>
+        <h1>Wahlergebnis</h1>
+        <p>Durchschnittliche Zustimmung über alle Wählergruppen: ${result.avgApproval.toFixed(1)} / 10</p>
+        <p>Stimmenanteil deiner Partei: <strong>${result.voteShare.toFixed(1)} %</strong></p>
+        <p style="margin-top:12px;">${result.verdict}</p>
+
+        <div style="margin-top:20px;">
+          <button class="btn primary" onclick="startNewGame()">
+            Neue Wahl starten
+          </button>
+        </div>
       </div>
     `;
     return;
   }
+
+
+
 }
 
 // ===== AUTO-START =====
