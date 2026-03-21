@@ -24,6 +24,7 @@ function createInitialState() {
     },
     currentEvent: null,
     lastChoice: null,
+    usedEventIds: [],
   };
 }
 
