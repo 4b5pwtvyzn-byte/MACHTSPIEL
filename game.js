@@ -143,13 +143,28 @@ function nextEvent() {
 }
 
 // ===== ENTSCHEIDUNGEN =====
+// ===== ENTSCHEIDUNGEN =====
 function applyDecision(optionIndex) {
   const ev = state.currentEvent;
   const opt = ev.options[optionIndex];
 
-  state.player.approval += opt.effect;
-  if (state.player.approval < 0) state.player.approval = 0;
-  if (state.player.approval > 10) state.player.approval = 10;
+  // Einfaches Modell: Effekt wirkt auf alle Wählergruppen
+  const v = state.player.voters;
+  v.arbeiter += opt.effect;
+  v.akademiker += opt.effect * 0.8;
+  v.rentner += opt.effect * 0.7;
+  v.jugend += opt.effect * 1.2;
+  v.selbststaendige += opt.effect * 0.9;
+  v.land += opt.effect * 0.6;
+
+  // Grenzen setzen
+  for (const key of Object.keys(v)) {
+    if (v[key] < 0) v[key] = 0;
+    if (v[key] > 10) v[key] = 10;
+  }
+
+  // Gesamtzustimmung aus Gruppen neu berechnen
+  recalcApprovalFromVoters();
 
   state.lastChoice = {
     headline: ev.headline,
