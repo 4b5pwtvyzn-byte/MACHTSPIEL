@@ -238,7 +238,7 @@ function renderScreen() {
         <h1>${state.player.name}</h1>
         <p>Runde ${state.round} – Zustimmung gesamt: ${approval.toFixed(1)} / 10</p>
 
-         <div class="event-card">
+      <div class="event-card">
           <h2>${ev.headline}</h2>
           <p>${ev.description}</p>
           ${state.lastChoice ? `
