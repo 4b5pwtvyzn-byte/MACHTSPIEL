@@ -202,6 +202,39 @@ function applyDecision(optionIndex) {
 }
 
 // ===== RENDERING =====
+function getElectionResult() {
+  const v = state.player.voters;
+
+  // Einfach: Mittelwert aller Gruppen als "Beliebtheit"
+  const avg =
+    (v.arbeiter +
+     v.akademiker +
+     v.rentner +
+     v.jugend +
+     v.selbststaendige +
+     v.land) / 6;
+
+  // Stimmenanteil grob aus Durchschnitt ableiten (0–10 -> 5–45 %)
+  const voteShare = 5 + avg * 4;
+
+  let verdict = '';
+  if (voteShare < 15) {
+    verdict = 'Deine Partei scheitert klar an der Fünfprozenthürde.';
+  } else if (voteShare < 25) {
+    verdict = 'Du schaffst es knapp in den Bundestag, aber bleibst eine kleine Oppositionspartei.';
+  } else if (voteShare < 35) {
+    verdict = 'Solides Ergebnis – du wirst eine wichtige Kraft im Parlament, aber brauchst Partner.';
+  } else {
+    verdict = 'Wahlsieg! Deine Partei wird stärkste Kraft und kann die Regierung anführen.';
+  }
+
+  return {
+    avgApproval: avg,
+    voteShare: voteShare,
+    verdict: verdict,
+  };
+}
+
 function renderScreen() {
   const app = document.getElementById('app');
   if (!app) return;
