@@ -238,10 +238,17 @@ function renderScreen() {
         <h1>${state.player.name}</h1>
         <p>Runde ${state.round} – Zustimmung gesamt: ${approval.toFixed(1)} / 10</p>
 
-        <div class="event-card">
+         <div class="event-card">
           <h2>${ev.headline}</h2>
           <p>${ev.description}</p>
+          ${state.lastChoice ? `
+            <p style="margin-top:8px; font-size:0.9rem;">
+              Letzte Entscheidung: <strong>${state.lastChoice.option}</strong><br>
+              ${state.lastChoice.summary} (Effekt: ${state.lastChoice.effect > 0 ? '+' : ''}${state.lastChoice.effect})
+            </p>
+          ` : ''}
         </div>
+
 
         <div class="voter-grid">
           <div class="voter-card">
