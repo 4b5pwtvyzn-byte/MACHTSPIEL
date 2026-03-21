@@ -231,15 +231,43 @@ function renderScreen() {
   if (state.phase === 'event') {
     const ev = state.currentEvent;
     const approval = state.player.approval;
+    const v = state.player.voters;
 
     app.innerHTML = `
       <div class="screen">
         <h1>${state.player.name}</h1>
-        <p>Runde ${state.round} – Zustimmung: ${approval} / 10</p>
+        <p>Runde ${state.round} – Zustimmung gesamt: ${approval.toFixed(1)} / 10</p>
 
         <div class="event-card">
           <h2>${ev.headline}</h2>
           <p>${ev.description}</p>
+        </div>
+
+        <div class="voter-grid">
+          <div class="voter-card">
+            <div class="voter-name">Arbeiter</div>
+            <div class="voter-value">${v.arbeiter.toFixed(1)} / 10</div>
+          </div>
+          <div class="voter-card">
+            <div class="voter-name">Akademiker</div>
+            <div class="voter-value">${v.akademiker.toFixed(1)} / 10</div>
+          </div>
+          <div class="voter-card">
+            <div class="voter-name">Rentner</div>
+            <div class="voter-value">${v.rentner.toFixed(1)} / 10</div>
+          </div>
+          <div class="voter-card">
+            <div class="voter-name">Jugend</div>
+            <div class="voter-value">${v.jugend.toFixed(1)} / 10</div>
+          </div>
+          <div class="voter-card">
+            <div class="voter-name">Selbstständige</div>
+            <div class="voter-value">${v.selbststaendige.toFixed(1)} / 10</div>
+          </div>
+          <div class="voter-card">
+            <div class="voter-name">Landbevölkerung</div>
+            <div class="voter-value">${v.land.toFixed(1)} / 10</div>
+          </div>
         </div>
 
         <div class="options-grid">
@@ -253,6 +281,7 @@ function renderScreen() {
     `;
     return;
   }
+
 
   if (state.phase === 'gameover') {
     const approval = state.player.approval;
