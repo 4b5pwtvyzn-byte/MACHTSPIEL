@@ -72,6 +72,53 @@
         .screen {
             animation: fadeIn 0.3s ease-in;
         }
+        .voter-grid {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+        }
+
+        .voter-card {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        .voter-name {
+            font-weight: 600;
+        }
+
+        .voter-value {
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        .event-card {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .event-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .options-grid {
+            margin-top: 15px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .btn.secondary {
+            background: #e5e7eb;
+            color: #111827;
+        }
 
         @keyframes fadeIn {
             from {
