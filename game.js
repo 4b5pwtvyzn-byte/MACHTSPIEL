@@ -27,6 +27,28 @@ function createInitialState() {
   };
 }
 
+function recalcApprovalFromVoters() {
+  const v = state.player.voters;
+  // Gewichtung grob an reale Wählerstruktur angelehnt
+  const weights = {
+    arbeiter: 0.22,
+    akademiker: 0.18,
+    rentner: 0.20,
+    jugend: 0.15,
+    selbststaendige: 0.10,
+    land: 0.15,
+  };
+  let total =
+    v.arbeiter * weights.arbeiter +
+    v.akademiker * weights.akademiker +
+    v.rentner * weights.rentner +
+    v.jugend * weights.jugend +
+    v.selbststaendige * weights.selbststaendige +
+    v.land * weights.land;
+
+  // Norm grob auf 0–10
+  state.player.approval = Math.max(0, Math.min(10, total / 2));
+}
 
 // ===== EVENTS (3 Beispiel-Events) =====
 const SIMPLE_EVENTS = [
