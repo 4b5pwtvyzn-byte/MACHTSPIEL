@@ -143,7 +143,6 @@ function nextEvent() {
 }
 
 // ===== ENTSCHEIDUNGEN =====
-// ===== ENTSCHEIDUNGEN =====
 function applyDecision(optionIndex) {
   const ev = state.currentEvent;
   const opt = ev.options[optionIndex];
