@@ -2462,3 +2462,11 @@ window.addEventListener('load', () => {
   state = createInitialState();
   renderScreen();
 });
+
+// --- MACHTSPIEL Startpunkt ---
+// Seite ist geladen → Anfangszustand erzeugen und ersten Screen rendern
+window.addEventListener('load', () => {
+  try { AudioEngine.init?.(); } catch (e) {}
+  state = createInitialState();
+  renderScreen();
+});
