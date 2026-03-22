@@ -1,146 +1,116 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MACHTSPIEL - Test</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            color: #333;
-        }
-
-        #game-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px;
-        }
-
-        h1 {
-            color: #667eea;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        p {
-            font-size: 1rem;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin: 20px auto 0;
-            display: block;
-        }
-
-        .btn.primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn.primary:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .screen {
-            animation: fadeIn 0.3s ease-in;
-        }
-        .voter-grid {
-            margin-top: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 8px;
-        }
-
-        .voter-card {
-            background: #f3f4f6;
-            border-radius: 8px;
-            padding: 8px 10px;
-            font-size: 0.85rem;
-            text-align: left;
-        }
-
-        .voter-name {
-            font-weight: 600;
-        }
-
-        .voter-value {
-            font-size: 0.85rem;
-            color: #555;
-        }
-
-        .event-card {
-            background: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 8px;
-        }
-
-        .event-card h2 {
-            margin-bottom: 8px;
-        }
-
-        .options-grid {
-            margin-top: 15px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-
-        .btn.secondary {
-            background: #e5e7eb;
-            color: #111827;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>MACHTSPIEL</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Helvetica','Arial',sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:16px;
+      color:#111827;
+    }
+    #game-container {
+      background:white;
+      border-radius:12px;
+      box-shadow:0 20px 60px rgba(0,0,0,.3);
+      max-width:960px;
+      width:100%;
+      max-height:95vh;
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+    .game-header {
+      padding:12px 16px;
+      border-bottom:1px solid #e5e7eb;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      background:#f9fafb;
+    }
+    .game-header__title {
+      font-weight:800;
+      letter-spacing:.06em;
+      font-size:.9rem;
+    }
+    .game-header__badge {
+      display:inline-flex;
+      align-items:center;
+      padding:4px 8px;
+      border-radius:999px;
+      background:#e5e7eb;
+      font-size:.75rem;
+      margin-left:4px;
+    }
+    .game-header__right {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:.75rem;
+    }
+    #news-ticker {
+      font-size:.75rem;
+      padding:6px 12px;
+      background:#111827;
+      color:#e5e7eb;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    #news-ticker-content { opacity:.9; }
+    #game-content {
+      padding:16px;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .btn {
+      padding:10px 16px;
+      border:none;
+      border-radius:8px;
+      font-size:.95rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:all .15s;
+    }
+    .btn--primary {
+      background:#667eea;
+      color:white;
+    }
+    .btn--primary:active {
+      transform:scale(.97);
+      box-shadow:0 5px 15px rgba(102,126,234,.4);
+    }
+  </style>
 </head>
 <body>
-    <div id="game-container">
-        <div id="app"></div>
+  <div id="game-container">
+    <header class="game-header">
+      <div class="game-header__title">MACHTSPIEL</div>
+      <div id="header-status" class="game-header__right"></div>
+    </header>
+    <div id="news-ticker">
+      <span id="news-ticker-content">Willkommen bei MACHTSPIEL.</span>
     </div>
+    <main id="game-content">
+      <p>MACHTSPIEL lädt…</p>
+    </main>
+  </div>
 
-<script>
-  alert('MACHTSPIEL lädt...');
-</script>
-<script src="game.js"></script>
-
+  <script src="game.js"></script>
+  <script>
+    // Falls game.js noch nicht initialisiert, hier Fallback:
+    if (typeof renderScreen === 'function' && typeof startNewGame === 'function') {
+      state = createInitialState();
+      renderScreen();
+    }
+  </script>
 </body>
 </html>
