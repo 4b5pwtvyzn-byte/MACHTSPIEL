@@ -1,4 +1,4 @@
-====
+/* ============================================
    MACHTSPIEL v2 — Deep Political Simulation
    Complete game engine with expanded mechanics
    ============================================ */
@@ -2441,6 +2441,7 @@ function closeSaveLoadModal() {
 
 // ===== INIT =====
 function initGame() {
+  try { AudioEngine.init(); } catch (e) {}
   state = null;
   renderScreen();
 }
@@ -2454,19 +2455,5 @@ window.advanceTime = function(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 };
 
+// Einmaliger Start
 document.addEventListener('DOMContentLoaded', initGame);
-
-// Spiel automatisch starten, wenn Seite geladen
-window.addEventListener('load', () => {
-  AudioEngine.init?.();
-  state = createInitialState();
-  renderScreen();
-});
-
-// --- MACHTSPIEL Startpunkt ---
-// Seite ist geladen → Anfangszustand erzeugen und ersten Screen rendern
-window.addEventListener('load', () => {
-  try { AudioEngine.init?.(); } catch (e) {}
-  state = createInitialState();
-  renderScreen();
-});
