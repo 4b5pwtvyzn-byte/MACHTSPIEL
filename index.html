@@ -27,50 +27,7 @@
       flex-direction:column;
       overflow:hidden;
     }
-    .game-header {
-      padding:12px 16px;
-      border-bottom:1px solid #e5e7eb;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:8px;
-      background:#f9fafb;
-    }
-    .game-header__title {
-      font-weight:800;
-      letter-spacing:.06em;
-      font-size:.9rem;
-    }
-    .game-header__badge {
-      display:inline-flex;
-      align-items:center;
-      padding:4px 8px;
-      border-radius:999px;
-      background:#e5e7eb;
-      font-size:.75rem;
-      margin-left:4px;
-    }
-    .game-header__right {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:.75rem;
-    }
-    #news-ticker {
-      font-size:.75rem;
-      padding:6px 12px;
-      background:#111827;
-      color:#e5e7eb;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    #news-ticker-content { opacity:.9; }
-    #game-content {
-      padding:16px;
-      overflow-y:auto;
-      -webkit-overflow-scrolling:touch;
-    }
+    #game-content { padding:16px; }
     .btn {
       padding:10px 16px;
       border:none;
@@ -78,39 +35,26 @@
       font-size:.95rem;
       font-weight:600;
       cursor:pointer;
-      transition:all .15s;
-    }
-    .btn--primary {
       background:#667eea;
       color:white;
-    }
-    .btn--primary:active {
-      transform:scale(.97);
-      box-shadow:0 5px 15px rgba(102,126,234,.4);
+      margin-top:12px;
     }
   </style>
 </head>
 <body>
   <div id="game-container">
-    <header class="game-header">
-      <div class="game-header__title">MACHTSPIEL</div>
-      <div id="header-status" class="game-header__right"></div>
-    </header>
-    <div id="news-ticker">
-      <span id="news-ticker-content">Willkommen bei MACHTSPIEL.</span>
-    </div>
     <main id="game-content">
-      <p>MACHTSPIEL lädt…</p>
+      <h1>MACHTSPIEL</h1>
+      <p>Einfacher Test‑Startscreen.</p>
+      <button id="start-btn" class="btn">Neues Spiel starten</button>
+      <div id="log" style="margin-top:12px;font-size:.8rem;color:#555;"></div>
     </main>
   </div>
 
-  <script src="game.js"></script>
   <script>
-    // Falls game.js noch nicht initialisiert, hier Fallback:
-    if (typeof renderScreen === 'function' && typeof startNewGame === 'function') {
-      state = createInitialState();
-      renderScreen();
-    }
+    document.getElementById('start-btn').addEventListener('click', () => {
+      document.getElementById('log').textContent = 'Start klick funktioniert – JavaScript läuft.';
+    });
   </script>
 </body>
 </html>
