@@ -2455,3 +2455,10 @@ window.advanceTime = function(ms) {
 };
 
 document.addEventListener('DOMContentLoaded', initGame);
+
+// Spiel automatisch starten, wenn Seite geladen
+window.addEventListener('load', () => {
+  AudioEngine.init?.();
+  state = createInitialState();
+  renderScreen();
+});
