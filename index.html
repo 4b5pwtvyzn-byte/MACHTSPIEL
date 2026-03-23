@@ -23,7 +23,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0f172a">
-<title>MACHTSPIEL — Politische Simulation</title>
+<title>MACHTSPIEL v3 — Politische Simulation</title>
 <style>
 /* ============================================
    MACHTSPIEL v2 — Complete CSS System
@@ -424,6 +424,19 @@ select {
 .mt-4 { margin-top: var(--space-4); }
 .mt-6 { margin-top: var(--space-6); }
 .mt-8 { margin-top: var(--space-8); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mt-1 { margin-top: var(--space-1); }
+.opacity-50 { opacity: 0.5; }
+.cursor-not-allowed { cursor: not-allowed; }
+.gap-2 { gap: var(--space-2); }
+.gap-4 { gap: var(--space-4); }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.w-full { width: 100%; }
+.grid { display: grid; }
+.grid-cols-2 { grid-template-columns: 1fr 1fr; }
+.grid-cols-3 { grid-template-columns: 1fr 1fr 1fr; }
 .gap-3 { gap: var(--space-3); }
 
 /* === Flexbox Utilities === */
@@ -1392,7 +1405,7 @@ select {
     <div id="header-status" class="game-header__right"></div>
   </header>
   <div id="news-ticker">
-    <span id="news-ticker-content">Willkommen bei MACHTSPIEL — Politische Simulation v2</span>
+    <span id="news-ticker-content">Willkommen bei MACHTSPIEL v3 — Deutsche Politiksimulation</span>
   </div>
   <main id="game-content">
     <p style="text-align: center; padding: var(--space-16); color: var(--color-text-muted);">MACHTSPIEL lädt…</p>
@@ -1403,6 +1416,7 @@ select {
   <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
 </footer>
 
-<script src="game.js"></script>
+<script src="data_events.js"></script>
+<script src="engine.js"></script>
 </body>
 </html>
